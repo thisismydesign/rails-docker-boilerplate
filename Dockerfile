@@ -7,7 +7,9 @@ RUN apk add --no-cache \
     # Required for Docker port scanning
     netcat-openbsd \
     # Required by Rails
-    tzdata
+    tzdata \
+    # Required for mysql
+    mariadb-dev
 
 WORKDIR /app
 
