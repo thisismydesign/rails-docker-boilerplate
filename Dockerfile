@@ -13,7 +13,4 @@ RUN apk add --no-cache \
 
 WORKDIR /app
 
-# TODO: not needed to move code if we use volumes
-COPY . ./
-
 ENTRYPOINT ["bin/docker-entrypoint.sh"]
