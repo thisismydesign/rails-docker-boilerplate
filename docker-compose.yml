@@ -1,0 +1,29 @@
+version: '3'
+
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: bin/rails server
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db
+      - redis
+    volumes:
+      - bundle_cache:/usr/local/bundle
+      - .:/app
+    environment:
+      REDIS_URL: redis://redis
+
+  db:
+    image: mariadb/server:10.2
+    environment:
+      MYSQL_ALLOW_EMPTY_PASSWORD: "true"
+
+  redis:
+    image: redis
+
+volumes:
+    bundle_cache:
