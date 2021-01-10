@@ -5,8 +5,8 @@
 ## Usage
 
 ```sh
-# Create new rails app
-docker-compose run --rm web rails new . --skip-collision-check
+# Create new rails app (customize according to your need)
+docker-compose run --rm web rails new . --force --api --database=mysql
 docker-compose up
 ```
 
