@@ -7,6 +7,7 @@
 ```sh
 # Create new rails app (customize according to your need)
 docker-compose run --rm web rails new . --force --api --database=mysql
+# Fix issues (e.g. edit config/database.yml) and then
 docker-compose up
 ```
 

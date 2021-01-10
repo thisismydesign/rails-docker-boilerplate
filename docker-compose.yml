@@ -5,9 +5,9 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    command: bin/rails server
+    command: bin/rails server --binding 0.0.0.0
     ports:
-      - "3000:3000"
+      - 3000:3000
     depends_on:
       - db
       - redis

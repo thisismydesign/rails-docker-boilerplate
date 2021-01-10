@@ -16,5 +16,4 @@ WORKDIR /app
 # TODO: not needed to move code if we use volumes
 COPY . ./
 
-RUN chmod +x bin/docker-entrypoint.sh
 ENTRYPOINT ["bin/docker-entrypoint.sh"]
