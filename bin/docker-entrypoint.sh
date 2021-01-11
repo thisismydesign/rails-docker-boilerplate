@@ -15,4 +15,6 @@ wait_for 10 redis 6379
 
 ls bin/rails && bin/rails db:prepare
 
+rm -f /app/tmp/pids/server.pid
+
 exec "$@"
