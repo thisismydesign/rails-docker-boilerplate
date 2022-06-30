@@ -1,4 +1,4 @@
-FROM ruby:2.6.3-alpine
+FROM ruby:3.1.2-alpine
 
 RUN apk update
 RUN apk add --no-cache \
@@ -9,7 +9,9 @@ RUN apk add --no-cache \
     # Required by Rails
     tzdata \
     # Required for mysql
-    mariadb-dev
+    mariadb-dev \
+    # Required for rails new
+    git
 
 WORKDIR /app
 
