@@ -1,18 +1,39 @@
-FROM ruby:3.1.2-alpine
-
-RUN apk update
-RUN apk add --no-cache \
-    # Build tools for building gems with native extensions
-    build-base \
-    # Required for Docker port scanning
-    netcat-openbsd \
-    # Required by Rails
-    tzdata \
-    # Required for mysql
-    mariadb-dev \
-    # Required for rails new
-    git
+FROM ruby:3.2.2-alpine AS base
 
 WORKDIR /app
 
-ENTRYPOINT ["bin/docker-entrypoint.sh"]
+RUN apk --update add --no-cache \
+  # Required for Docker port scanning
+  netcat-openbsd \
+  # Required by Rails
+  tzdata \
+  # Required for PostgreSQL
+  postgresql-client \
+  # Required by the app
+  nodejs \
+  # Required for rails new
+  git
+
+
+FROM base AS dev
+
+RUN apk --update add --no-cache \
+  # Build tools for building gems with native extensions
+  build-base \
+  # Required for PostgreSQL
+  postgresql-dev
+
+COPY . .
+
+
+FROM dev AS ruby-deps
+
+RUN bundle install --no-cache
+
+
+FROM base AS app
+
+COPY --from=ruby-deps /usr/local/bundle/ /usr/local/bundle/
+
+COPY .env.example .env
+COPY . .

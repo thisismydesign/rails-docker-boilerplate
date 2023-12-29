@@ -4,8 +4,9 @@ services:
   web:
     build:
       context: .
-      dockerfile: Dockerfile
+      target: dev
     command: bin/rails server --binding 0.0.0.0
+    entrypoint: bin/docker-web-entrypoint.sh
     ports:
       - 3000:3000
     depends_on:
@@ -18,12 +19,12 @@ services:
       REDIS_URL: redis://redis
 
   db:
-    image: mariadb/server:10.2
+    image: postgres:16.1-alpine
     environment:
-      MYSQL_ALLOW_EMPTY_PASSWORD: "true"
+      POSTGRES_PASSWORD: postgres
 
   redis:
-    image: redis
+    image: redis:7.2.3-alpine
 
 volumes:
     bundle_cache:
