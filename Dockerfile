@@ -10,9 +10,7 @@ RUN apk --update add --no-cache \
   # Required for PostgreSQL
   postgresql-client \
   # Required by the app
-  nodejs \
-  # Required for rails new
-  git
+  nodejs
 
 
 FROM base AS dev
