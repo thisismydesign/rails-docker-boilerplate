@@ -10,7 +10,7 @@ wait_for()
 
 bundle check || bundle install
 
-wait_for 10 db 3306
+wait_for 10 db 5432
 wait_for 10 redis 6379
 
 ls bin/rails && bin/rails db:prepare
