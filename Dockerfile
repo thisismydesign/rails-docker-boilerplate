@@ -26,13 +26,13 @@ RUN apk --update add --no-cache \
 COPY . .
 
 
-FROM dev AS ruby-deps
+FROM dev AS deps
 
 RUN bundle install --no-cache
 
 
 FROM base AS app
 
-COPY --from=ruby-deps /usr/local/bundle/ /usr/local/bundle/
+COPY --from=deps /usr/local/bundle/ /usr/local/bundle/
 
 COPY . .

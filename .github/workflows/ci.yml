@@ -1,0 +1,30 @@
+name: CI
+
+on: push
+
+jobs:
+  build-docker-image:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    outputs:
+      docker-tag: ${{ steps.meta.outputs.tags }}
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set up Docker Buildx to be able to use caching
+        uses: docker/setup-buildx-action@v2
+
+      - name: Extract metadata (tags, labels) for Docker
+        id: meta
+        uses: docker/metadata-action@v3
+        with:
+          images: local/${{ github.repository }}
+
+      - name: Build image
+        uses: docker/build-push-action@v3
+        with:
+          target: deps
+          tags: ${{ steps.meta.outputs.tags }}
+          cache-from: type=gha
+          cache-to: type=gha
