@@ -13,6 +13,12 @@ docker compose run --rm web rails new . --force --database=postgresql --css=tail
 docker compose up
 ```
 
+Reset (start over) via
+```sh
+git reset --hard HEAD
+git clean -fdx
+```
+
 ## License
 
 The project is available as open source under the terms of the [MIT License](http://opensource.org/licenses/MIT).
