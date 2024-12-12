@@ -5,8 +5,6 @@
 --skip-system-test    # Use RSpec
 --skip-test           # Use RSpec
 --skip-jbuilder       # Not used
---skip-docker         # No need for production Docker
---skip-kamal          # No need for Kamal
 --skip-rubocop        # Run own RuboCop
 --skip-ci             # Run own CI
 --skip-action-mailer  # Not used
