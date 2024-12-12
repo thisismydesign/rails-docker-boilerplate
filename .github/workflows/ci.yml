@@ -24,6 +24,7 @@ jobs:
       - name: Build image
         uses: docker/build-push-action@v3
         with:
+          file: Dockerfile.dev
           target: deps
           tags: ${{ steps.meta.outputs.tags }}
           cache-from: type=gha
