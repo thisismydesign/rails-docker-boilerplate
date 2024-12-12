@@ -7,7 +7,6 @@
 --skip-jbuilder       # Not used
 --skip-rubocop        # Run own RuboCop
 --skip-ci             # Run own CI
---skip-action-mailer  # Not used
 --skip-action-mailbox # Not used
 --skip-action-text    # Not used
 --skip-action-cable   # Not used
