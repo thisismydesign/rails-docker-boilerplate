@@ -5,10 +5,11 @@
 ## Usage
 
 ```sh
-# Create new rails app (customize according to your need)
+# Edit .railsrc to customize the rails app
+# Create new rails app
 docker compose run --rm web rails new . --force --rc=.railsrc
 
-# Fix issues (e.g. edit config/database.yml) and then
+# Run app
 docker compose up
 ```
 
