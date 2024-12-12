@@ -1,4 +1,4 @@
---database=postgresql
+--database=sqlite3
 --javascript=importmap
 
 --skip-git            # Already initialized
