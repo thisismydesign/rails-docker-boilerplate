@@ -1,5 +1,6 @@
 --database=postgresql
 --javascript=importmap
+--devcontainer
 
 --skip-git            # Already initialized
 --skip-system-test    # Use RSpec
