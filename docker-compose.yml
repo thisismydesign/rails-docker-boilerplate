@@ -11,7 +11,7 @@ services:
       - db
     volumes:
       - bundle_cache:/usr/local/bundle
-      - .:/rails
+      - .:/app
 
   db:
     image: postgres:16.1-alpine
