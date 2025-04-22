@@ -3,17 +3,15 @@ services:
     build:
       context: .
       dockerfile: Dockerfile.dev
-      target: ${DOCKER_STAGE_TARGET:-dev}
-    image: ${DOCKER_IMAGE:-platform:local}
-    command: bin/rails server --binding 0.0.0.0
-    entrypoint: bin/docker-entrypoint-dev-web
+    image: thisismydesign/rails-docker-boilerplate:local
+    command: sleep infinity
     ports:
       - 3000:3000
     depends_on:
       - db
     volumes:
       - bundle_cache:/usr/local/bundle
-      - .:/app
+      - .:/rails
 
   db:
     image: postgres:16.1-alpine

@@ -1,38 +1,14 @@
-FROM ruby:3.4.3-alpine AS base
+# syntax=docker/dockerfile:1
+# check=error=true
 
-WORKDIR /app
+ARG RUBY_VERSION=3.4.3
+FROM docker.io/library/ruby:$RUBY_VERSION-slim
 
-RUN apk --update add --no-cache \
-  # Required for Docker port scanning
-  netcat-openbsd \
-  # Required by Rails
-  tzdata \
-  # Required for PostgreSQL
-  postgresql-client \
-  # Required by the app
-  nodejs \
-  # Required for Apple Silicon
-  gcompat
+# Rails app lives here
+WORKDIR /rails
 
-
-FROM base AS dev
-
-RUN apk --update add --no-cache \
-  # Build tools for building gems with native extensions
-  build-base \
-  # Required for PostgreSQL
-  postgresql-dev
-
-COPY . .
-
-
-FROM dev AS deps
-
-RUN bundle install --no-cache
-
-
-FROM base AS app
-
-COPY --from=deps /usr/local/bundle/ /usr/local/bundle/
-
-COPY . .
+# Install packages needed to build gems
+RUN apt-get update -qq && \
+  apt-get install --no-install-recommends -y \
+  build-essential git libpq-dev libyaml-dev pkg-config && \
+  rm -rf /var/lib/apt/lists /var/cache/apt/archives
