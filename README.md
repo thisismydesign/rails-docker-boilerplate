@@ -5,6 +5,7 @@
 ## Usage
 
 ```sh
+docker compose build
 # Edit .railsrc to customize the rails app
 # Create new rails app
 docker compose run --rm web bash -c "bundle && rails new . --force --rc=.railsrc"
