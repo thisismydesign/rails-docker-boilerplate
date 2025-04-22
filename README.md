@@ -10,7 +10,9 @@
 docker compose run --rm web bash -c "bundle && rails new . --force --rc=.railsrc"
 
 # Run app
-docker compose up
+docker compose up -d
+docker compose exec web bin/setup --skip-server
+docker compose exec web bin/dev
 ```
 
 Reset (start over) via
