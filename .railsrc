@@ -2,7 +2,6 @@
 --javascript=importmap
 --devcontainer
 
---skip-git            # Already initialized
 --skip-system-test    # Use RSpec
 --skip-test           # Use RSpec
 --skip-jbuilder       # Not used
